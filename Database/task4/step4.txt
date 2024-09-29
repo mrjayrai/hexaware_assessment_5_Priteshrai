@@ -1,0 +1,12 @@
+mysql>  SELECT c.customer_id,c.customer_name
+    ->  from customer c
+    ->  where not exists (
+    ->  select *
+    ->  from booking b
+    -> where b.customer_id = c.customer_id);
++-------------+---------------+
+| customer_id | customer_name |
++-------------+---------------+
+|          10 | Harry Potter  |
++-------------+---------------+
+1 row in set (0.00 sec)

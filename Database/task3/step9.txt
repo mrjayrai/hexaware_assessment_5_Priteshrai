@@ -1,0 +1,11 @@
+mysql> select event_type, SUM(total_seats-available_seats) as ticket_sold
+    -> from event
+    -> group by event_type;
++------------+-------------+
+| event_type | ticket_sold |
++------------+-------------+
+| Movie      |        1800 |
+| Concert    |       53700 |
+| Sports     |       36300 |
++------------+-------------+
+3 rows in set (0.00 sec)

@@ -1,0 +1,21 @@
+mysql> select c.customer_name,b.customer_id,e.event_name
+    -> from booking b
+    -> join customer c on c.customer_id = b.customer_id
+    -> join event e on e.event_id = b.event_id
+    -> where b.event_id IN (
+    -> select ee.event_id
+    -> from event ee
+    -> where ee.venue_id IN (
+    -> select v.venue_id
+    -> from venue v
+    -> where v.address = 'Chennai, Tamil Nadu'
+    -> ));
++---------------+-------------+-------------------+
+| customer_name | customer_id | event_name        |
++---------------+-------------+-------------------+
+| John Doe      |           1 | Avengers: Endgame |
+| Jane Smith    |           2 | Avengers: Endgame |
++---------------+-------------+-------------------+
+2 rows in set (0.03 sec)
+
+mysql>

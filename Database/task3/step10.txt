@@ -1,0 +1,14 @@
+mysql> select
+    -> event_type, sum((total_seats-available_seats)*ticket_price) as total_revenue,
+    -> date_format(event_date,'%Y') as year
+    -> from event
+    -> group by event_type,year
+    -> order by year;
++------------+---------------+------+
+| event_type | total_revenue | year |
++------------+---------------+------+
+| Movie      |     587500.00 | 2024 |
+| Concert    |   89650000.00 | 2024 |
+| Sports     |   88910000.00 | 2024 |
++------------+---------------+------+
+3 rows in set (0.00 sec)

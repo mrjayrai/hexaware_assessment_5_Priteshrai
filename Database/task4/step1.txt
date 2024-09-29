@@ -1,0 +1,23 @@
+mysql> select v.venue_name,FORMAT(AVG(e.ticket_price),2) as average_ticket_price
+    -> from
+    -> (
+    -> select venue_id,ticket_price
+    -> from event) as e
+    -> join venue v on v.venue_id = e.venue_id
+    -> group by v.venue_name
+    -> order by v.venue_name;
++--------------------------+----------------------+
+| venue_name               | average_ticket_price |
++--------------------------+----------------------+
+|  Bindra Stadium          | 2,500.00             |
+| Arun Jaitley Stadium     | 300.00               |
+| Eden Gardens             | 1,500.00             |
+| Green Park Stadium       | 1,800.00             |
+| Holkar Stadium           | 1,500.00             |
+| Nehru Stadium            | 425.00               |
+| Phoneix Mall             | 2,500.00             |
+| Plaza Mall               | 900.00               |
+| Rajiv Gandhi  Sancutiram | 200.00               |
+| Wankhede Stadium         | 1,200.00             |
++--------------------------+----------------------+
+10 rows in set (0.00 sec)

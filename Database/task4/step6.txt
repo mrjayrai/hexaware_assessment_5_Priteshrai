@@ -1,0 +1,15 @@
+mysql> select event_type,total_seat
+    -> from(
+    ->  select e.event_type,SUM(e.total_seats-e.available_seats) as total_seat
+    ->  from event e
+    ->  group by e.event_type) as event_summary;
++------------+------------+
+| event_type | total_seat |
++------------+------------+
+| Movie      |       1800 |
+| Concert    |      53700 |
+| Sports     |      36300 |
++------------+------------+
+3 rows in set (0.00 sec)
+
+mysql>

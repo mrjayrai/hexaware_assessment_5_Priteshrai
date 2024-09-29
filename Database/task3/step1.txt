@@ -1,0 +1,18 @@
+mysql> select event_name,AVG(ticket_price) as average_ticket_price
+    -> from event
+    -> group by event_name;
++-----------------------+----------------------+
+| event_name            | average_ticket_price |
++-----------------------+----------------------+
+| Avengers: Endgame     |           350.000000 |
+| Coldplay Concert      |          1500.000000 |
+| Phantom of the Opera  |          1200.000000 |
+| IPL Final cup         |          2500.000000 |
+| Lion King             |           900.000000 |
+| DDLJ                  |           200.000000 |
+| Ed Sheeran Concert    |          1800.000000 |
+| Mughal-E-Azam         |          1500.000000 |
+| Kabir Singh           |           300.000000 |
+| The Lion King Musical |          2500.000000 |
++-----------------------+----------------------+
+10 rows in set (0.04 sec)

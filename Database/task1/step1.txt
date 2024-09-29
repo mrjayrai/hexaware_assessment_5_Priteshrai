@@ -1,0 +1,22 @@
+mysql> create database ticketbookingsystem;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| ems                 |
+| hex_demo            |
+| hexaware_train      |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| sakila              |
+| student             |
+| sys                 |
+| ticketbookingsystem |
+| world               |
++---------------------+
+11 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,8 @@
+mysql> select sum((total_seats-available_seats)*ticket_price) as total_revenue
+    -> from event;
++---------------+
+| total_revenue |
++---------------+
+|  179692500.00 |
++---------------+
+1 row in set (0.02 sec)

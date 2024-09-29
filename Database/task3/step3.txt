@@ -1,0 +1,10 @@
+mysql> select event_name, (total_seats-available_seats) as ticket_sold
+    -> from event
+    -> order by ticket_sold desc
+    -> limit 1;
++---------------+-------------+
+| event_name    | ticket_sold |
++---------------+-------------+
+| IPL Final cup |       35000 |
++---------------+-------------+
+1 row in set (0.03 sec)

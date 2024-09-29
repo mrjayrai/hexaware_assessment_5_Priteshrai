@@ -1,0 +1,13 @@
+mysql> select * from customer
+    -> limit 5
+    -> offset 5;
++-------------+-------------------+------------------------------+--------------+
+| customer_id | customer_name     | email                        | phone_number |
++-------------+-------------------+------------------------------+--------------+
+|           6 | David Miller      | davidmiller@example.com      | 9876543215   |
+|           7 | Eve Adams         | eveadams@example.com         | 9876543216   |
+|           8 | Franklin Thompson | franklinthompson@example.com | 9876543217   |
+|           9 | Grace Kelly       | gracekelly@example.com       | 9876543218   |
+|          10 | Harry Potter      | harrypotter@example.com      | 9876543219   |
++-------------+-------------------+------------------------------+--------------+
+5 rows in set (0.00 sec)

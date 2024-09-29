@@ -1,0 +1,13 @@
+mysql> select event_name from event
+    ->  where ticket_price>(
+    -> select AVG(ticket_price) from event);
++-----------------------+
+| event_name            |
++-----------------------+
+| Coldplay Concert      |
+| IPL Final cup         |
+| Ed Sheeran Concert    |
+| Mughal-E-Azam         |
+| The Lion King Musical |
++-----------------------+
+5 rows in set (0.03 sec)

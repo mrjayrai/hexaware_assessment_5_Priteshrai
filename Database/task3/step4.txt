@@ -1,0 +1,18 @@
+mysql> select event_name, SUM(total_seats-available_seats) as ticket_sold
+    -> from event
+    -> group by event_name;
++-----------------------+-------------+
+| event_name            | ticket_sold |
++-----------------------+-------------+
+| Avengers: Endgame     |         350 |
+| Coldplay Concert      |       25000 |
+| Phantom of the Opera  |         600 |
+| IPL Final cup         |       35000 |
+| Lion King             |         900 |
+| DDLJ                  |         400 |
+| Ed Sheeran Concert    |       28000 |
+| Mughal-E-Azam         |         400 |
+| Kabir Singh           |         700 |
+| The Lion King Musical |         700 |
++-----------------------+-------------+
+10 rows in set (0.00 sec)
