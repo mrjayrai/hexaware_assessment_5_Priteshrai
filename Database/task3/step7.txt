@@ -15,17 +15,28 @@ mysql> select * from booking;
 +------------+-------------+----------+-------------+------------+--------------+
 10 rows in set (0.00 sec)
 
-mysql> SELECT DATE_FORMAT(BOOKING_DATE,'%y-%m') as month,
-    -> sum(num_tickets) as total_ticket_sold
-    -> from booking
-    -> group by month
-    -> order by month;
-+-------+-------------------+
-| month | total_ticket_sold |
-+-------+-------------------+
-| 24-09 |                30 |
-| 24-10 |                 5 |
-+-------+-------------------+
-2 rows in set (0.00 sec)
+mysql> SELECT e.event_name as event,
+    -> DATE_FORMAT(BOOKING_DATE,'%y-%m') as month,
+    ->  sum(num_tickets) as total_ticket_sold
+    ->  from booking b
+    -> join event e  on b.event_id = e.event_id
+    ->  group by event,month
+    -> order by month,event;
++----------------------+-------+-------------------+
+| event                | month | total_ticket_sold |
++----------------------+-------+-------------------+
+| Avengers: Endgame    | 24-09 |                 4 |
+| Coldplay Concert     | 24-09 |                 3 |
+| DDLJ                 | 24-09 |                 2 |
+| Ed Sheeran Concert   | 24-09 |                 8 |
+| IPL Final cup        | 24-09 |                 1 |
+| Kabir Singh          | 24-09 |                 1 |
+| Lion King            | 24-09 |                 6 |
+| Mughal-E-Azam        | 24-09 |                 3 |
+| Phantom of the Opera | 24-09 |                 4 |
+| Coldplay Concert     | 24-10 |                 3 |
+| Kabir Singh          | 24-10 |                 5 |
++----------------------+-------+-------------------+
+11 rows in set (0.04 sec)
 
 mysql>

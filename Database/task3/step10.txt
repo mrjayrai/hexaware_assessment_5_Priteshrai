@@ -12,3 +12,27 @@ mysql> select
 | Sports     |   88910000.00 | 2024 |
 +------------+---------------+------+
 3 rows in set (0.00 sec)
+
+
+mysql> select
+    ->  event_name, sum((total_seats-available_seats)*ticket_price) as total_revenue,
+    ->  date_format(event_date,'%Y') as year
+    ->  from event
+    ->  group by event_name,year
+    ->  order by year;
++-----------------------+---------------+------+
+| event_name            | total_revenue | year |
++-----------------------+---------------+------+
+| Avengers: Endgame     |     122500.00 | 2024 |
+| Coldplay Concert      |   37500000.00 | 2024 |
+| Phantom of the Opera  |          0.00 | 2024 |
+| IPL Final cup         |   87500000.00 | 2024 |
+| Lion King             |     810000.00 | 2024 |
+| DDLJ                  |      80000.00 | 2024 |
+| Ed Sheeran Concert    |   50400000.00 | 2024 |
+| Mughal-E-Azam         |     600000.00 | 2024 |
+| Kabir Singh           |     210000.00 | 2024 |
+| The Lion King Musical |    1750000.00 | 2024 |
+| Deadpool              |     175000.00 | 2024 |
++-----------------------+---------------+------+
+11 rows in set (0.03 sec)

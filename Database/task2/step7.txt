@@ -1,8 +1,10 @@
-mysql> select * from event where event_name like '%concert%' and available_seats>0;
-+----------+--------------------+------------+------------+----------+-------------+-----------------+--------------+------------+
-| event_id | event_name         | event_date | event_time | venue_id | total_seats | available_seats | ticket_price | event_type |
-+----------+--------------------+------------+------------+----------+-------------+-----------------+--------------+------------+
-|        2 | Coldplay Concert   | 2024-11-15 | 19:00:00   |        2 |       30000 |            5000 |      1500.00 | Concert    |
-|        7 | Ed Sheeran Concert | 2024-11-20 | 18:30:00   |        7 |       35000 |            7000 |      1800.00 | Concert    |
-+----------+--------------------+------------+------------+----------+-------------+-----------------+--------------+------------+
+mysql> select event_name as events,available_seats from event where event_name like '%concert%' and available_seats>0;
++--------------------+-----------------+
+| events             | available_seats |
++--------------------+-----------------+
+| Coldplay Concert   |            5000 |
+| Ed Sheeran Concert |            7000 |
++--------------------+-----------------+
 2 rows in set (0.00 sec)
+
+mysql>

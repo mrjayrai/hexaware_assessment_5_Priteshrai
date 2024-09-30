@@ -1,8 +1,8 @@
-mysql> SELECT event_name
-    -> FROM event
-    -> WHERE event_name NOT LIKE 'x%'
-    ->   AND event_name NOT LIKE 'y%'
-    ->   AND event_name NOT LIKE 'z%';
+mysql> select event_name
+    -> from event
+    -> where event_name  not like 'x%'
+    -> and event_name not like 'y%'
+    -> and event_name not like 'z%';
 +-----------------------+
 | event_name            |
 +-----------------------+
@@ -16,5 +16,8 @@ mysql> SELECT event_name
 | Mughal-E-Azam         |
 | Kabir Singh           |
 | The Lion King Musical |
+| Deadpool              |
 +-----------------------+
-10 rows in set (0.00 sec)
+11 rows in set (0.00 sec)
+
+mysql>
