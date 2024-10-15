@@ -71,6 +71,10 @@ public abstract class Event {
 	public void setVenueName(Venue venueName) {
 		this.venueName = venueName;
 	}
+	
+	public Venue getVenue() {
+		return venueName;
+	}
 
 	public int getTotalSeats() {
 		return totalSeats;

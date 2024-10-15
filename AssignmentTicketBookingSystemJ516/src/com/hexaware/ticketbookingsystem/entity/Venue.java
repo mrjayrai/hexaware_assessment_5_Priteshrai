@@ -4,16 +4,30 @@ public class Venue {
 
 	private String venueName;
 	private String address;
+	private int venueId;
 	
+	
+	
+	public Venue(String venueName, String address, int venueId) {
+		super();
+		this.venueName = venueName;
+		this.address = address;
+		this.venueId = venueId;
+	}
+
+	public int getVenueId() {
+		return venueId;
+	}
+
+	public void setVenueId(int venueId) {
+		this.venueId = venueId;
+	}
+
 	public Venue() {
 		super();
 	}
 
-	public Venue(String venueName, String address) {
-		super();
-		this.venueName = venueName;
-		this.address = address;
-	}
+	
 
 	public String getVenueName() {
 		return venueName;

@@ -4,16 +4,29 @@ public class Customer {
 	private String customerName;
 	private String email;
 	private String phoneNumber;
+	private int customerId;
 	
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 	public Customer() {
 		super();
 	}
 
-	public Customer(String customerName, String email, String phoneNumber) {
+	
+	
+
+	public Customer(String customerName, String email, String phoneNumber, int customerId) {
 		super();
 		this.customerName = customerName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
+		this.customerId = customerId;
 	}
 
 	public String getCustomerName() {

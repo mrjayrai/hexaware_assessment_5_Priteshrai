@@ -1,5 +1,7 @@
 package com.hexaware.ticketbookingsystem.dao;
 
+import java.util.List;
+
 import com.hexaware.ticketbookingsystem.entity.Booking;
 import com.hexaware.ticketbookingsystem.entity.Customer;
 import com.hexaware.ticketbookingsystem.entity.Event;
@@ -11,7 +13,7 @@ public interface IBookingSystemRepository {
 	boolean cancelTicket(int bookingId);
 	boolean addCustomer(Customer customer);
 	double calculateBookingCost(int eventId,int numOfTicket);
-	boolean getEventDetails();
+	List<Event> getEventDetails();
 	boolean createVenue(Venue venue);
 	boolean getAvailableTickets(Event event);
 	boolean getBookingDetails(int customerId);
