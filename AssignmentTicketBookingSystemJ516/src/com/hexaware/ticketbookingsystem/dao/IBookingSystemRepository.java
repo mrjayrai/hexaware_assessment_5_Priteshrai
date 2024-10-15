@@ -16,5 +16,5 @@ public interface IBookingSystemRepository {
 	List<Event> getEventDetails();
 	boolean createVenue(Venue venue);
 	boolean getAvailableTickets(Event event);
-	boolean getBookingDetails(int customerId);
+	boolean getBookingDetails(int bookingId);
 }

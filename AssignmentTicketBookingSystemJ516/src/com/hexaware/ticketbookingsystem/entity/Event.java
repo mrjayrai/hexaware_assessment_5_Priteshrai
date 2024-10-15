@@ -11,12 +11,27 @@ public abstract class Event {
 	private Venue venueName;
 	private int totalSeats;
 	private int availableSeats;
+	private int venueId;
 	private double ticketPrice;
 	private EventType eventType;
 	
 	public enum EventType{
 		MOVIE, SPORTS, CONCERT
 	}
+	
+	
+	
+	public int getVenueId() {
+		return venueId;
+	}
+
+
+
+	public void setVenueId(int venueId) {
+		this.venueId = venueId;
+	}
+
+
 
 	public Event() {
 		super();
