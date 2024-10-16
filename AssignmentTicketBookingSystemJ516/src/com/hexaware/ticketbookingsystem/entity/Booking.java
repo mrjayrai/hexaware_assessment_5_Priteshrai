@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Booking {
 	private int bookingId;
-	private Customer customerID;
-	private Event eventID;
+	private int customerID;
+	private int eventID;
 	private int numOfTickets;
 	private double totalCost;
 	private LocalDate bookingDate;
@@ -14,15 +14,13 @@ public class Booking {
 		super();
 	}
 
-	public Booking(int bookingId, Customer customerID, Event eventID, int numOfTickets, double totalCost,
-			LocalDate bookingDate) {
+	public Booking(int bookingId, int customerID, int eventID, int numOfTickets,double totalCost) {
 		super();
 		this.bookingId = bookingId;
 		this.customerID = customerID;
 		this.eventID = eventID;
 		this.numOfTickets = numOfTickets;
 		this.totalCost = totalCost;
-		this.bookingDate = bookingDate;
 	}
 
 	public int getBookingId() {
@@ -33,19 +31,19 @@ public class Booking {
 		this.bookingId = bookingId;
 	}
 
-	public Customer getCustomerID() {
+	public int getCustomerID() {
 		return customerID;
 	}
 
-	public void setCustomerID(Customer customerID) {
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
 
-	public Event getEventID() {
+	public int getEventID() {
 		return eventID;
 	}
 
-	public void setEventID(Event eventID) {
+	public void setEventID(int eventID) {
 		this.eventID = eventID;
 	}
 

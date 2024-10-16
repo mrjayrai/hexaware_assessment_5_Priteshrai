@@ -2,6 +2,8 @@ package com.hexaware.ticketbookingsystem.main;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.hexaware.ticketbookingsystem.entity.Concert;
@@ -16,69 +18,78 @@ import com.hexaware.ticketbookingsystem.service.IEventServiceProvider;
 public class TicketBookingSystemDB {
 	static Scanner scanner = new Scanner(System.in);
 
-	
-	public Event createEvent(int eventId,String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName,
+	public static int generateBookingID() {
+		long timestamp = System.currentTimeMillis() / 1000;
+
+		Random random = new Random();
+		int randomNum = random.nextInt(900) + 100;
+
+		long bookingIdLong = timestamp % 100000 + randomNum;
+		return (int) bookingIdLong;
+	}
+
+	public Event createEvent(int eventId, String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName,
 			int totalSeats, double ticketPrice, Event.EventType eventType) {
 
-		
 		switch (eventType) {
-        case MOVIE:
-        	
-        	Scanner sc = new Scanner(System.in);
-        	System.out.println("Enter Actor Name: ");
-        	String actorName = sc.next();
-        	sc.nextLine();
-        	System.out.println("Enter Actress Name: ");
-        	String actressName = sc.next();
-        	sc.nextLine();
-        	System.out.println("Choose Genre Type: \n1 for Action \n2 for Horror \n3 for Comedy");
-            int genreChoice = sc.nextInt();
-            sc.nextLine();
-            Movie.GenreType genreType = Movie.GenreType.values()[genreChoice - 1];
-        	Movie movieEvent = new Movie(eventId,eventName, eventDate, eventTime, venueName, totalSeats, totalSeats, ticketPrice, eventType);
-            movieEvent.setActorName(actorName);
-            movieEvent.setActressName(actressName);
-            movieEvent.setGenreType(genreType);
+		case MOVIE:
+
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Enter Actor Name: ");
+			String actorName = sc.next();
+			sc.nextLine();
+			System.out.println("Enter Actress Name: ");
+			String actressName = sc.next();
+			sc.nextLine();
+			System.out.println("Choose Genre Type: \n1 for Action \n2 for Horror \n3 for Comedy");
+			int genreChoice = sc.nextInt();
+			sc.nextLine();
+			Movie.GenreType genreType = Movie.GenreType.values()[genreChoice - 1];
+			Movie movieEvent = new Movie(eventId, eventName, eventDate, eventTime, venueName, totalSeats, totalSeats,
+					ticketPrice, eventType);
+			movieEvent.setActorName(actorName);
+			movieEvent.setActressName(actressName);
+			movieEvent.setGenreType(genreType);
 //            events.add(movieEvent);
-            return movieEvent;
+			return movieEvent;
 
-        case CONCERT:
-        	Scanner scConcert = new Scanner(System.in);
-        	System.out.println("Enter Artist Name: ");
-        	String artistName = scConcert.next();
-        	scConcert.nextLine();
-        	System.out.println("Choose Genre Type: \n1 for THEARTICAL \n2 for CLASSICAL \n3 for ROCK \n4 for RECITAL");
-            int concertChoice = scConcert.nextInt();
-            scConcert.nextLine();
-            Concert.ConcertType concertType = Concert.ConcertType.values()[concertChoice-1];
-            Concert concertEvent = new Concert(eventId,eventName, eventDate, eventTime, venueName, totalSeats, totalSeats, ticketPrice, eventType);
-            concertEvent.setArtistName(artistName);
-            concertEvent.setConcertType(concertType);
+		case CONCERT:
+			Scanner scConcert = new Scanner(System.in);
+			System.out.println("Enter Artist Name: ");
+			String artistName = scConcert.next();
+			scConcert.nextLine();
+			System.out.println("Choose Genre Type: \n1 for THEARTICAL \n2 for CLASSICAL \n3 for ROCK \n4 for RECITAL");
+			int concertChoice = scConcert.nextInt();
+			scConcert.nextLine();
+			Concert.ConcertType concertType = Concert.ConcertType.values()[concertChoice - 1];
+			Concert concertEvent = new Concert(eventId, eventName, eventDate, eventTime, venueName, totalSeats,
+					totalSeats, ticketPrice, eventType);
+			concertEvent.setArtistName(artistName);
+			concertEvent.setConcertType(concertType);
 //            events.add(concertEvent);
-            return concertEvent;
+			return concertEvent;
 
-        case SPORTS:
-        	Scanner scSport = new Scanner(System.in);
-        	System.out.println("Enter Sports Name: ");
-        	String sportName = scSport.next();
+		case SPORTS:
+			Scanner scSport = new Scanner(System.in);
+			System.out.println("Enter Sports Name: ");
+			String sportName = scSport.next();
 //        	scSport.nextLine();
-        	System.out.println("Enter Teams Name: ");
-        	String TeamsName = scSport.next();
+			System.out.println("Enter Teams Name: ");
+			String TeamsName = scSport.next();
 //        	scSport.nextLine();
-            Sport sportEvent = new Sport(eventId,eventName, eventDate, eventTime, venueName, totalSeats, totalSeats, ticketPrice, eventType);
-            sportEvent.setSportName(sportName);
-            sportEvent.setTeamsName(TeamsName);
+			Sport sportEvent = new Sport(eventId, eventName, eventDate, eventTime, venueName, totalSeats, totalSeats,
+					ticketPrice, eventType);
+			sportEvent.setSportName(sportName);
+			sportEvent.setTeamsName(TeamsName);
 //            events.add(sportEvent);
-            return sportEvent;
+			return sportEvent;
 
-        default:
-            throw new IllegalArgumentException("Invalid event type: " + eventType);
-    }
-		
+		default:
+			throw new IllegalArgumentException("Invalid event type: " + eventType);
+		}
 
 	}
-	
-	
+
 	public static void main(String[] args) {
 		boolean flag = true;
 		IEventServiceProvider service = new EventServiceProviderImpl();
@@ -127,12 +138,13 @@ public class TicketBookingSystemDB {
 				scanner.nextLine();
 				Event.EventType eventType = Event.EventType.values()[eventTypeChoice - 1];
 				Venue venueObj = new Venue();
-				venueObj.setVenueId(venueName);;
-				Event event = clientservice.createEvent(eventid,eventName, LocalDate.parse(eventDate),
-                        LocalTime.parse(eventTime), venueObj, totalSeats, ticketPrice, eventType);
+				venueObj.setVenueId(venueName);
+				;
+				Event event = clientservice.createEvent(eventid, eventName, LocalDate.parse(eventDate),
+						LocalTime.parse(eventTime), venueObj, totalSeats, ticketPrice, eventType);
 				service.createEvent(event);
-                System.out.println(" Event Created Successfully: " + event.getEventName());
-                
+				System.out.println(" Event Created Successfully: " + event.getEventName());
+
 				break;
 			case 2:
 				System.out.println("Please enter Venue ID:");
@@ -141,13 +153,13 @@ public class TicketBookingSystemDB {
 				String cVenueName = scanner.next();
 				System.out.println("Please enter Venue Address:");
 				String venueAddress = scanner.next();
-				
-				Venue venue = new Venue(cVenueName,venueAddress,venueID);
-			boolean venueFlag =	service.createVenue(venue);
-			if(venueFlag) {
-				System.out.println("Venue Created Successfully: "+venue.getVenueName());
-			}
-				
+
+				Venue venue = new Venue(cVenueName, venueAddress, venueID);
+				boolean venueFlag = service.createVenue(venue);
+				if (venueFlag) {
+					System.out.println("Venue Created Successfully: " + venue.getVenueName());
+				}
+
 				break;
 			case 3:
 				System.out.println("Please Enter CustomerID:");
@@ -161,26 +173,122 @@ public class TicketBookingSystemDB {
 				scanner.nextLine();
 				System.out.println("Please Enter Your Phone Number:");
 				String customerPhone = scanner.next();
-				
-				Customer customer = new Customer(customerName,customerEmail,customerPhone,customerId);
+
+				Customer customer = new Customer(customerName, customerEmail, customerPhone, customerId);
 				boolean customerAddCheck = service.addCustomer(customer);
-				if(customerAddCheck) {
+				if (customerAddCheck) {
 					System.out.println("Customer added successfulyy");
-				}else {
+				} else {
 					System.err.println("Invalid Data for Customer");
 				}
 				break;
 			case 4:
+				System.out.println("Select Event ID for ticket Booking");
+				List<Event> eventList = service.getEventDetails();
+				for (Event e : eventList) {
+					System.out.println(e.toString());
+				}
+
+				int selectedEventId = scanner.nextInt();
+				Event selectedEvent = null;
+				for (Event e : eventList) {
+					if (e.getEventId() == selectedEventId) {
+						selectedEvent = e;
+						break;
+					}
+				}
+
+				if (selectedEvent != null) {
+					double ticketPriceCosting = selectedEvent.getTicketPrice();
+					System.out.println("Enter Your Customer ID:");
+					int customerIdBooking = scanner.nextInt();
+
+					System.out.println("Enter No of Tickets:");
+					int numOfTickets = scanner.nextInt();
+					double totalPrice = ticketPriceCosting * numOfTickets;
+					int bID = generateBookingID();
+					com.hexaware.ticketbookingsystem.entity.Booking booking = new com.hexaware.ticketbookingsystem.entity.Booking(
+							bID, customerIdBooking, selectedEventId, numOfTickets, totalPrice);
+					boolean bookCheck = service.bookTicket(booking);
+					if (bookCheck) {
+						System.out.println("Booking Successfull: " + booking.getBookingId());
+					} else {
+						System.err.println("Bookinh Failed");
+					}
+
+				} else {
+					System.out.println("Invalid Event ID. Please select a valid event.");
+				}
+
 				break;
 			case 5:
+				System.out.println("Please enter booking id to cancel ticket: ");
+				int cancelID = scanner.nextInt();
+				boolean cancelCheck = service.cancelTicket(cancelID);
+				if (cancelCheck) {
+					System.out.println("Booking cancelled successfully");
+				} else {
+					System.err.println("Booking cannot be cancelled");
+				}
 				break;
 			case 6:
+				System.out.println("Select Event ID for Calculating Cost");
+				List<Event> eventPriceList = service.getEventDetails();
+				for (Event e : eventPriceList) {
+					System.out.println(e.toString());
+				}
+
+				int selectEventId = scanner.nextInt();
+				Event selectEventIdP = null;
+				String eventNameSelected = null;
+				for (Event e : eventPriceList) {
+					if (e.getEventId() == selectEventId) {
+						selectEventIdP = e;
+						eventNameSelected = e.getEventName();
+						break;
+					}
+				}
+				if (selectEventIdP != null) {
+					System.out.println("Please enter the number of tickets");
+					int numTicket = scanner.nextInt();
+					double cost = service.calculateBookingCost(selectEventId, numTicket);
+					System.out.println(
+							"The cost of " + numTicket + " tickets of " + eventNameSelected + " will be: " + cost);
+				} else {
+					System.err.println("Invalid ID selected");
+				}
 				break;
 			case 7:
+				System.out.println("Select Event ID to see ticket's available");
+				List<Event> ticketDetail = service.getEventDetails();
+				for (Event e : ticketDetail) {
+					System.out.println(e.getnameID());
+				}
+				int ticketCheckID = scanner.nextInt();
+				Event selectTicket = null;
+				for (Event e : ticketDetail) {
+					if (e.getEventId() == ticketCheckID) {
+						selectTicket = e;
+						break;
+					}
+				}
+				
+				if(selectTicket != null) {
+					service.getAvailableTickets(selectTicket);
+				}else {
+					System.err.println("Invalid ID Selected");
+				}
 				break;
 			case 8:
+				List<Event> eventDetail = service.getEventDetails();
+				for (Event e : eventDetail) {
+					System.out.println(e.toString());
+				}
 				break;
 			case 9:
+				System.out.println("Please Enter your Booking ID:");
+				int bookId = scanner.nextInt();
+				service.getBookingDetails(bookId);
 				break;
 			case 10:
 				flag = false;

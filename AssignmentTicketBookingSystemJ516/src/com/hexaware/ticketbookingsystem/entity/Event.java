@@ -134,12 +134,22 @@ public abstract class Event {
 		this.eventId = eventId;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Event [eventName=" + eventName + ", eventDate=" + eventDate + ", eventTime=" + eventTime
-				+ ", venueName=" + venueName + ", totalSeats=" + totalSeats + ", availableSeats=" + availableSeats
-				+ ", ticketPrice=" + ticketPrice + ", eventType=" + eventType + "]";
+		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", eventDate=" + eventDate + ", eventTime="
+				+ eventTime + ", venueName=" + venueName.getVenueName() + ", totalSeats=" + totalSeats + ", availableSeats="
+				+ availableSeats + ", ticketPrice=" + ticketPrice + ", eventType=" + eventType
+				+ "]";
 	}
+	
+	public String getnameID() {
+		return "Event [eventId=" + eventId + ", eventName=" + eventName  
+				+ "]";
+	}
+
+
 
 	public double calculateTotalRevenue() {
 		int ticketSold = totalSeats-availableSeats;
