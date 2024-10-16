@@ -94,6 +94,9 @@ public class TicketBookingSystemDB {
 		boolean flag = true;
 		IEventServiceProvider service = new EventServiceProviderImpl();
 		TicketBookingSystemDB clientservice = new TicketBookingSystemDB();
+//		try {
+			
+		
 		while (flag) {
 			System.out.println("------------------------Welcome To Ticket Booking System------------------------");
 			System.out.println("Please Choose the action to perform");
@@ -197,9 +200,11 @@ public class TicketBookingSystemDB {
 						break;
 					}
 				}
-
-				if (selectedEvent != null) {
-					double ticketPriceCosting = selectedEvent.getTicketPrice();
+					double ticketPriceCosting = 0.0;
+					if(selectedEvent !=null) {
+						 ticketPriceCosting = selectedEvent.getTicketPrice();
+					}
+					
 					System.out.println("Enter Your Customer ID:");
 					int customerIdBooking = scanner.nextInt();
 
@@ -213,12 +218,10 @@ public class TicketBookingSystemDB {
 					if (bookCheck) {
 						System.out.println("Booking Successfull: " + booking.getBookingId());
 					} else {
-						System.err.println("Bookinh Failed");
+						System.err.println("Booking Failed");
 					}
 
-				} else {
-					System.out.println("Invalid Event ID. Please select a valid event.");
-				}
+				
 
 				break;
 			case 5:
@@ -298,7 +301,10 @@ public class TicketBookingSystemDB {
 				break;
 			}
 		}
-
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			System.err.println("Please Enter valid input for specified columns");
+//		}
 		scanner.close();
 	}
 }

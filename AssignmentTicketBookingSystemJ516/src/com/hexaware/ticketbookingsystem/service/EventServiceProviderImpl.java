@@ -8,6 +8,7 @@ import com.hexaware.ticketbookingsystem.entity.Booking;
 import com.hexaware.ticketbookingsystem.entity.Customer;
 import com.hexaware.ticketbookingsystem.entity.Event;
 import com.hexaware.ticketbookingsystem.entity.Venue;
+import com.hexaware.ticketbookingsystem.exception.EventNotFoundException;
 
 public class EventServiceProviderImpl implements IEventServiceProvider {
 
@@ -29,7 +30,20 @@ public class EventServiceProviderImpl implements IEventServiceProvider {
 	@Override
 	public boolean bookTicket(Booking booking) {
 		// TODO Auto-generated method stub
-		return dao.bookTicket(booking);
+		boolean flag = dao.bookTicket(booking);
+		
+		if(flag == false) {
+			try {
+
+				throw new EventNotFoundException();
+
+			} catch (Exception e) {
+
+				System.err.println("Event Not found for Event ID: " + booking.getEventID());
+			}
+		}
+		return flag;
+		
 	}
 
 	@Override

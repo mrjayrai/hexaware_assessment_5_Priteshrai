@@ -160,6 +160,9 @@ public class TicketBookingSystem extends BookingSystem {
 	public static void main(String[] args) {
 		 Scanner scanner = new Scanner(System.in);
 		TicketBookingSystem ticketBookingSystem = new TicketBookingSystem();
+		try {
+			
+		
 		while (true) {
 			System.out.println("\nMenu:");
 			System.out.println("1. Create Event");
@@ -293,6 +296,10 @@ public class TicketBookingSystem extends BookingSystem {
 			default:
 				break;
 			}
+		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("Please enter valid input for specified columns");
 		}
 	}
 

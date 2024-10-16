@@ -81,10 +81,16 @@ public class Booking {
 	}
 
 	public static void main(String[] args) {
+		
+			
+		
+		
 		Scanner scanner = new Scanner(System.in);
 		boolean flag = true;
 
 		Booking bookingSystem = new Booking();
+		
+		try {
 
 		while (flag) {
 			System.out.println(
@@ -135,9 +141,13 @@ public class Booking {
 				flag = false;
 				break;
 			default:
+				System.err.println("Inavlid Option Selected");
 				break;
 			}
 
+		}
+		}catch (Exception e) {
+			System.err.println("Please input valid values for specified columns");
 		}
 		scanner.close();
 	}
