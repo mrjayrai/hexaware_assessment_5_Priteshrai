@@ -49,7 +49,42 @@ public class BookingSystemServiceProviderImpl implements IBookingSystemRepositor
 			insertEventQueryStmt.setDouble(8, event.getTicketPrice());
 			insertEventQueryStmt.setString(9, event.getEventType().name());
 			int count = insertEventQueryStmt.executeUpdate();
-			return count>0;
+			
+			if(count>0) {
+				if( event instanceof Movie) {
+					Movie movie = (Movie) event;
+	                String insertMovieQuery = "INSERT INTO movie (movie_id, event_id, actor_name, actress_name, movie_type) VALUES (?, ?, ?, ?, ?);";
+	                PreparedStatement insertMovieStmt = conn.prepareStatement(insertMovieQuery);
+	                insertMovieStmt.setInt(1, movie.getEventId());
+	                insertMovieStmt.setInt(2, movie.getEventId());
+	                insertMovieStmt.setString(3,movie.getActorName());
+	                insertMovieStmt.setString(4, movie.getActressName());
+	                insertMovieStmt.setString(5, movie.getGenreType().name());
+	                insertMovieStmt.executeUpdate();
+				}
+				if( event instanceof Concert) {
+					Concert concert = (Concert) event;
+	                String insertConcertQuery = "INSERT INTO concert (concert_id, event_id, artist_name, concert_type) VALUES (?, ?, ?, ?);";
+	                PreparedStatement insertConcertStmt = conn.prepareStatement(insertConcertQuery);
+	                insertConcertStmt.setInt(1, concert.getEventId());
+	                insertConcertStmt.setInt(2, concert.getEventId());
+	                insertConcertStmt.setString(3, concert.getArtistName());
+	                insertConcertStmt.setString(4, concert.getConcertType().name());
+	                insertConcertStmt.executeUpdate();
+				}
+				if (event instanceof Sport) {
+	                Sport sport = (Sport) event;
+	                String insertSportQuery = "INSERT INTO sport (sport_id, event_id, sport_name, team_name) VALUES (?, ?, ?, ?);";
+	                PreparedStatement insertSportStmt = conn.prepareStatement(insertSportQuery);
+	                insertSportStmt.setInt(1, sport.getEventId());
+	                insertSportStmt.setInt(2, sport.getEventId());
+	                insertSportStmt.setString(3, sport.getSportName());
+	                insertSportStmt.setString(4, sport.getTeamsName());
+	                insertSportStmt.executeUpdate();
+	            }
+				
+				return true;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
