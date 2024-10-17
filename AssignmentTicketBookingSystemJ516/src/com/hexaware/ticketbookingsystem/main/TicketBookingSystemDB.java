@@ -94,7 +94,7 @@ public class TicketBookingSystemDB {
 		boolean flag = true;
 		IEventServiceProvider service = new EventServiceProviderImpl();
 		TicketBookingSystemDB clientservice = new TicketBookingSystemDB();
-//		try {
+		try {
 			
 		
 		while (flag) {
@@ -200,10 +200,10 @@ public class TicketBookingSystemDB {
 						break;
 					}
 				}
-					double ticketPriceCosting = 0.0;
-					if(selectedEvent !=null) {
-						 ticketPriceCosting = selectedEvent.getTicketPrice();
-					}
+//					double ticketPriceCosting = 0.0;
+//					if(selectedEvent !=null) {
+						 double ticketPriceCosting = selectedEvent.getTicketPrice();
+//					}
 					
 					System.out.println("Enter Your Customer ID:");
 					int customerIdBooking = scanner.nextInt();
@@ -300,11 +300,13 @@ public class TicketBookingSystemDB {
 			default:
 				break;
 			}
+		} 
+		}catch (NullPointerException n) {
+		    System.err.println("No Data Found for selected option");
+		} catch (Exception e) {
+		    // TODO: handle exception
+		    System.err.println("Please Enter valid input for specified columns");
 		}
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			System.err.println("Please Enter valid input for specified columns");
-//		}
 		scanner.close();
 	}
 }

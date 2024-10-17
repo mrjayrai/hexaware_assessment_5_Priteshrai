@@ -10,7 +10,7 @@ import com.hexaware.ticketbookingsystem.exception.EventNotFoundException;
 
 public interface IBookingSystemRepository {
 	boolean createEvent(Event event);
-	boolean bookTicket(Booking booking) throws EventNotFoundException;
+	boolean bookTicket(Booking booking);
 	boolean cancelTicket(int bookingId);
 	boolean addCustomer(Customer customer);
 	double calculateBookingCost(int eventId,int numOfTicket);
