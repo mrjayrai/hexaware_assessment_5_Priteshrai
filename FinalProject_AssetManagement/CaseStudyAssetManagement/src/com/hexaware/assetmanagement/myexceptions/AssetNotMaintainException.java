@@ -3,6 +3,6 @@ package com.hexaware.assetmanagement.myexceptions;
  * Description : Created AssetNotMaintainException (Custom Exception)
  * Date: 18-10-2024
  */
-public class AssetNotMaintainException extends Exception{
+public class AssetNotMaintainException extends RuntimeException{
 
 }

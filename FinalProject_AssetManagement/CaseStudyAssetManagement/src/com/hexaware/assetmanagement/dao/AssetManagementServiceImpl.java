@@ -148,7 +148,7 @@ public boolean maintenanceDate(int assetId) throws AssetNotMaintainException {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
-			return false;
+//			return false;
 		}
 		
 
@@ -171,8 +171,9 @@ public boolean maintenanceDate(int assetId) throws AssetNotMaintainException {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
-			return false;
+//			return false;
 		}
+		return false;
 	}
 
 //	@Override
@@ -212,8 +213,9 @@ public boolean maintenanceDate(int assetId) throws AssetNotMaintainException {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
-			return false;
+			
 		}
+		return false;
 	}
 
 	@Override
@@ -249,6 +251,10 @@ public boolean maintenanceDate(int assetId) throws AssetNotMaintainException {
                 + "VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		try {
+			
+			if(!checkAssetIdInReservations(assetId)) {
+				throw new AssetNotFoundException();
+			}
 			PreparedStatement insertReservationQueryStmt = conn.prepareStatement(insertReservationQuery);
 			int reservationId = generateMaintenanceId(employeeId); 
 			
@@ -265,11 +271,11 @@ public boolean maintenanceDate(int assetId) throws AssetNotMaintainException {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
-			System.err.println("Employee Not Found");
-			throw new AssetNotFoundException();
+			System.err.println("Asset Not Found");
+			
 		}
 		
-//		return false;
+		return false;
 	}
 
 	@Override
@@ -312,7 +318,6 @@ public boolean maintenanceDate(int assetId) throws AssetNotMaintainException {
 			// TODO: handle exception
 //			e.printStackTrace();
 			
-			return false;
 		}
 		return false;
 	}
